@@ -1,19 +1,34 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 
 const UserLogin = () => {
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+    const [userData, setUserData] = useState({})
+
+    const submitHandle = (e) => {
+        e.preventDefault();
+        setUserData({ email, password })
+        console.log(userData);
+        setEmail('');
+        setPassword('');
+    }
     return (
         <div className='p-[7]  flex flex-col justify-between'>
-            <div className=''>
+            <div className='mb-[20px]'>
                 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTFZqKMWPlbZBAv-X0AKjHDHSAYBLu_f6RCJb-45XQSDcaUjg1GWBRfDglGtKbcowzb5R0&usqp=CAU" alt="" className='h-[100px]' />
-                <form action="">
+                <form action="" onSubmit={(e) => { submitHandle(e) }}>
 
                     <h3 className='text-lg font-medium ml-[0px]'>What's your email</h3>
                     <input type="email" required placeholder='email@example.com'
+                        value={email}
+                        onChange={(e) => { setEmail(e.target.value) }}
                         className='bg-[#eeeeee] mb-7 h-[30px]   w-full px-10 py-2 text-lg bg-white border rounded placeholder:text-xm'
                     />
                     <h3 className='mb-2 text-lg font-medium'>Enter Password</h3>
                     <input
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
                         className='bg-[#eeeeee] h-[30px] mb-[30px]  w-full px-10 py-2 text-lg bg-white border rounded placeholder:text-xm'
                         type="password" name="" id="" required placeholder='12345678' />
                     <button
@@ -27,9 +42,10 @@ const UserLogin = () => {
                 </form>
             </div>
             <div>
-                <button className="bg-[green] h-[40px] text-[#fff] mt-[100px] font-semibold mt-7 pt-10  w-full px-10 py-2 text-lg bg-white border rounded placeholder:text-xm">
+                <Link to='/captain-login' className="bg-[green] h-[50px] text-[#fff] font-semibold pt-[10px]  w-full px-[10px] py-[3px] text-lg bg-white border rounded placeholder:text-xm no-underline
+">
                     Sign in as Captain
-                </button>
+                </Link>
             </div>
 
         </div>

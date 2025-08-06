@@ -18,7 +18,7 @@ const Home = () => {
                 <h2 className="mb-4 text-2xl font-bold">Get Started with Uber</h2>
                 <Link
                     to="/login"
-                    className="bg-[#111] p-[7px] block  py-3 text-center text-[#fff] transition duration-200 bg-black rounded hover:opacity-90"
+                    className="no-underline bg-[#111] p-[7px] block  py-3 text-center text-[#fff] transition duration-200 bg-black rounded hover:opacity-90"
                 >
                     Continue
                 </Link>
