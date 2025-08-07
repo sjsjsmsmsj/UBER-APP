@@ -1,5 +1,9 @@
-import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import axios from 'axios'
+import { UserDataContext } from '../context/UserContext.jsx'
+import React, { useContext, useState } from 'react'
+
+
 const UserSignup = () => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
@@ -8,23 +12,36 @@ const UserSignup = () => {
 
     const [userData, setUserData] = useState({})
 
-    const submitHandler = (e) => {
-        e.preventDefault();
-        setUserData({
-            email,
-            password,
-            fullName: {
-                firstName,
-                lastName
-            }
+    const navigate = useNavigate()
+    const { user, setUser } = useContext(UserDataContext)
+    console.log(user)
 
-        })
-        console.log(userData)
+
+    const submitHandler = async (e) => {
+        e.preventDefault();
+        const newUser = {
+            fullname: {
+                firstname: firstName,
+                lastname: lastName
+            },
+            email: email,
+            password: password
+        }
+
+        const response = await axios.post(`${import.meta.env.VITE_BASE_URL}/users/register`, newUser)
+
+
+        if (response.status == 201) {
+            const data = response.data
+            setUser(data.user)
+            localStorage.setItem('token', JSON.stringify(data.token))
+            navigate('/home')
+        }
+
         setEmail('')
         setPassword('')
         setFirstName('')
         setLastName('')
-
     }
     return (
         <div className='py-[7x]  flex flex-col justify-between'>
@@ -59,12 +76,13 @@ const UserSignup = () => {
                     <input
                         className='bg-[#eeeeee] h-[30px] mb-[30px]  w-full px-10 py-2 text-lg bg-white border rounded placeholder:text-sm'
                         type="password" name="" id="" required placeholder='12345678'
+                        autoComplete="current-password"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                     />
                     <button
                         className='bg-[#111] h-[40px] text-[#fff] font-semibold mt-7 pt-10  w-full px-10 py-2 text-base bg-white border rounded placeholder:text-xm'
-                    >Sign up</button>
+                    >Create account</button>
 
                     <p className='text-center'>
                         Already have you an account? <Link className='mt-[3px] text-[blue] font-semibold mb-2 rounded px-4 py-2 w-full text-base no-underline' to='/captain-login'>Login here</Link>

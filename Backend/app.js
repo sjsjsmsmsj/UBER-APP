@@ -12,7 +12,7 @@ const captainRoutes = require('./routes/captain.routes')
 // Middleware
 app.use(cors(
     {
-        origin: 'http://localhost:3000', // ✅ Đúng origin frontend
+        origin: 'http://localhost:5173', // ✅ Đúng origin frontend
         credentials: true                // ✅ Cho phép gửi cookie qua CORS
     }
 ));

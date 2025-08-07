@@ -28,15 +28,12 @@ module.exports.registerUser = async (req, res, next) => {
             email,
             password: hashedpassword
         })
-        const token = user.generateAuthToken()
+        const token = await user.generateAuthToken()
         res.status(201).json({ token, user })
     } catch (error) {
         console.error("Tạo user lỗi:", error); // ❗ rất quan trọng
         return res.status(500).json({ message: error.message });
     }
-
-    res.status(201).json({ message: "User created successfully" })
-
 }
 
 module.exports.loginUser = async (req, res, next) => {
