@@ -6,10 +6,12 @@ import UserSignup from './pages/UserSignup.jsx'
 import CaptainLogin from './pages/CaptainLogin.jsx'
 import CaptainSignup from './pages/CaptainSignup.jsx'
 import { Routes, Route } from "react-router-dom"
+import { UserDataContext } from './context/UserContext.jsx'
+import { useContext } from 'react'
 
 
 function App() {
-
+  const { user, setUser } = useContext(UserDataContext)
   return (
     <Routes>
       <Route path="/" element={<Home />} />

@@ -15,7 +15,7 @@ const Home = () => {
 
             {/* Footer with title and button */}
             <div className="h-[40%] bg-white p-6 text-center">
-                <h2 className="mb-4 text-2xl font-bold">Get Started with Uber</h2>
+                <h2 className="mb-4 text-[20px] font-semibold">Get Started with Uber</h2>
                 <Link
                     to="/login"
                     className="no-underline bg-[#111] p-[7px] block  py-3 text-center text-[#fff] transition duration-200 bg-black rounded hover:opacity-90"
