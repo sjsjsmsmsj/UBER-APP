@@ -26,8 +26,6 @@ const CaptainSignup = () => {
     const { captain, setCaptain } = useContext(CaptainDataContext)
 
 
-
-
     const submitHandler = async (e) => {
         e.preventDefault();
         const captainData = ({
