@@ -11,6 +11,8 @@ import { UserDataContext } from './context/UserContext.jsx'
 import { useContext } from 'react'
 import UserProtectWrapper from './pages/UserProtectWrapper.jsx'
 import UserLogout from './pages/UserLogout.jsx'
+import CaptainHome from './pages/CaptainHome.jsx'
+import CaptainProtectWrapper from './pages/CaptainProtectWrapper.jsx'
 
 
 function App() {
@@ -31,6 +33,7 @@ function App() {
 
       />
 
+
       <Route
         path='/user/logout'
         element={
@@ -40,6 +43,16 @@ function App() {
         }
 
       />
+
+      <Route
+        path='/captain-home'
+        element={
+          <CaptainProtectWrapper>
+            <CaptainHome />
+          </CaptainProtectWrapper>
+        }
+      />
+
     </Routes>
   )
 }

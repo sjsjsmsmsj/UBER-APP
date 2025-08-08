@@ -31,7 +31,7 @@ module.exports.registerUser = async (req, res, next) => {
         const token = await user.generateAuthToken()
         res.status(201).json({ token, user })
     } catch (error) {
-        console.error("Tạo user lỗi:", error); // ❗ rất quan trọng
+        console.error("Tạo user lỗi:", error);
         return res.status(500).json({ message: error.message });
     }
 }
